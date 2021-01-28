@@ -90,8 +90,6 @@ public class LogRequestFilter extends OncePerRequestFilter implements Ordered {
     }
 
     private Map<String, Object> getTrace(HttpServletRequest request, int status) {
-
-
         Map<String, Object> trace = new LinkedHashMap<String, Object>();
         trace.put("method", request.getMethod());
         trace.put("path", request.getRequestURI());

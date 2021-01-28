@@ -1,0 +1,13 @@
+package com.wukai3.springbootannotation;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringbootAnnotationApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringbootAnnotationApplication.class, args);
+    }
+
+}
