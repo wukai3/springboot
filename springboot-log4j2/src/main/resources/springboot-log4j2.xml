@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="5">
+    <Properties>
+        <!-- 定义file日志格式 -->
+        <Property name="file.log.pattern">
+            %date{yyyy-MM-dd HH:mm:ss:SSS} [%X{trackingId}] %5level [%thread] %c{1.} line:[%L] : %msg%n
+        </Property>
+        <!-- 定义console日志格式 -->
+        <Property name="console.log.pattern">
+            %style{%date{yyyy-MM-dd HH:mm:ss:SSS}}{red} [%X{trackingId}] %highlight{%-5level}[%style{%t}{bright,blue}] %style{%C{1.}}{bright,cyan} line:[%style{%L}{bright,blue}]: %msg%n%throwable
+        </Property>
+        <!-- 定义文件名变量 -->
+        <Property name="file.filename">springboot-log4j2/log/springboot-log4j2.log</Property>
+        <Property name="file.pattern">springboot-log4j2/log/springboot-log4j2-%d{dd-MMMM-yyyy}-%i.log.gz</Property>
+    </Properties>
+
+    <!-- 定义Appender，即目的地 -->
+    <Appenders>
+        <!-- 定义输出到屏幕 -->
+        <Console name="console" target="SYSTEM_OUT">
+            <!-- 日志格式引用上面定义的log.pattern -->
+            <PatternLayout pattern="${console.log.pattern}" />
+            <!--The console only outputs the information of level and above, (onMatch), and other direct reject (onMismatch).-->
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Console>
+        <!-- 定义输出到文件,文件名引用上面定义的file.filename -->
+        <RollingFile name="springboot-log4j2" bufferedIO="true" fileName="${file.filename}" filePattern="${file.pattern}">
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${file.log.pattern}" />
+            <Policies>
+                <!-- 根据文件大小自动切割日志 -->
+                <SizeBasedTriggeringPolicy size="1 MB" />
+            </Policies>
+            <!-- 保留最近10份 -->
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info" includeLocation="true">
+            <!-- 对info级别的日志，输出到console -->
+            <AppenderRef ref="console" level="debug" />
+            <!-- 对debug级别的日志，输出到err，即上面定义的RollingFile -->
+            <AppenderRef ref="springboot-log4j2" level="debug" />
+        </Root>
+
+        <!-- LOG "com.wukai3.springbootlog4j2*" at DEBUG level -->
+        <Logger name="com.wukai3.springbootlog4j2" level="debug" includeLocation="true" additivity="true"/>
+    </Loggers>
+</Configuration>
