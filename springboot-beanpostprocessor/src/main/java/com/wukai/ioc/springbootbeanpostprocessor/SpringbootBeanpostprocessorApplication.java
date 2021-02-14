@@ -14,6 +14,7 @@ public class SpringbootBeanpostprocessorApplication {
         ApplicationContext context = SpringApplication.run(SpringbootBeanpostprocessorApplication.class, args);
         People people = (People) context.getBean("people");
         System.out.println(people);
+        SpringApplication.exit(context);
     }
 
 }

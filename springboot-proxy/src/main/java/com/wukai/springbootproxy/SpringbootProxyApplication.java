@@ -5,13 +5,15 @@ import com.wukai.springbootproxy.dynamicproxy.JdkDynamicUserServiceImplProxy;
 import com.wukai.springbootproxy.staticproxy.StaticUserServiceImplProxy;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class SpringbootProxyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootProxyApplication.class, args);
+        ApplicationContext context = SpringApplication.run(SpringbootProxyApplication.class, args);
         execute();
+        SpringApplication.exit(context);
     }
 
     public static void execute() {
