@@ -3,8 +3,14 @@ package com.wukai.springbootproxy.dynamicproxy;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+/**
+ * JDK动态代理类的增强实现类
+ *
+ * @author wukai
+ * @since 2021-02-14 21:47:06
+ */
 public class InvokeHandlerImpl implements InvocationHandler {
-    private Object realObj;
+    private final Object realObj;
 
     public InvokeHandlerImpl(Object object) {
         super();

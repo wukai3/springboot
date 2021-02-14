@@ -2,6 +2,12 @@ package com.wukai.springbootproxy.staticproxy;
 
 import com.wukai.springbootproxy.UserServiceImpl;
 
+/**
+ * 静态代理类实现
+ *
+ * @author wukai
+ * @since 2021-02-14 21:47:06
+ */
 public class StaticUserServiceImplProxy extends UserServiceImpl {
     UserServiceImpl userService;
 
